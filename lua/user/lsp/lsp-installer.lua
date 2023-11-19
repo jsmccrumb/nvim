@@ -12,6 +12,8 @@ local servers = {
   "bashls",
   "jsonls",
   "yamlls",
+  "gopls",
+  "cypher_ls",
 }
 
 lsp_installer.setup()
@@ -38,6 +40,14 @@ for _, server in pairs(servers) do
     local pyright_opts = require "user.lsp.settings.pyright"
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
+
+  -- if server == "cypher_ls" then
+  --   cypheropts = {
+  --     cmd = { "cypher-language-server", "--stdio" },
+  --     filetypes = { "cypher" },
+  --   }
+  --   opts = vim.tbl_deep_extend("force", cypheropts, opts)
+  -- end
 
   lspconfig[server].setup(opts)
 end
